@@ -61,10 +61,10 @@ deploy.config:
   before_live:
     web.ui:
       # Clear the log for this deployment
-      - rm -fR logs/carcalc.log
+      #- rm -fR logs/carcalc.log
 
       # Copy setup files
 #      - cp /app/.env.example /app/.env
 
       # Create logs directories
-      - mkdir -p logs
+      #- mkdir -p logs
