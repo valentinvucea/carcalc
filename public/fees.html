@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Price decomposition</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="page decomposition-page">
+    <section class="payment-form dark">
+      <div class="container">
+        <div class="block-heading">
+          <h2>Price decomposition</h2>
+        </div>
+        <form>
+          <div class="products">
+            <div class="item">
+              <span id="total" class="price">$0</span>
+              <p class="item-name">Total Out of the Door</p>
+            </div>
+            <div class="item">
+              <span id="financed" class="price">$0</span>
+              <p class="item-name">Total financed</p>
+            </div>
+            <div class="item">
+                <span id="interest" class="price">$0</span>
+                <p id="interest" class="item-name">Interest</p>
+              </div>            
+            <div class="item">
+              <span id="fees" class="price">$0</span>
+              <p id="fees" class="item-name">Fees</p>
+              <small id="fees-details" class="pl-3 d-block"></small>
+            </div>           
+          </div>
+        
+          <div class="card-details">
+            <h3 class="title">Input Fields</h3>
+            <div id="alert" class="d-none alert alert-danger" role="alert"></div>
+            <div class="row">
+              <div class="form-group col-sm-4">
+                <label for="msrp">MSRP</label>
+              </div>
+              <div class="form-group col-sm-8">
+                <input id="msrp" type="text" class="form-control" placeholder="$44615" aria-label="MSRP" aria-describedby="basic-addon1" value="44615">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="price">Car negociated price</label>
+              </div>
+              <div class="form-group col-sm-8">
+                <input id="price" type="text" class="form-control" placeholder="$42357" aria-label="price" aria-describedby="basic-addon1" value="42357">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="additional">Additional options</label>
+              </div>              
+              <div class="form-group col-sm-8">
+                <input id="additional" type="text" class="form-control" placeholder="$0" aria-label="additional" aria-describedby="basic-addon1" value="0">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="apr">APR (%)</label>
+              </div>
+              <div class="form-group col-sm-8">
+                <input id="apr" type="text" class="form-control" placeholder="APR" aria-label="apr" aria-describedby="basic-addon1" value="0.9">
+              </div>               
+              <div class="form-group col-sm-4">
+                <label for="down">Down payment</label>
+              </div>              
+              <div class="form-group col-sm-8">
+                <input id="down" type="text" class="form-control" placeholder="$7500" aria-label="down" aria-describedby="basic-addon1" value="7500">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="payments"># of payments</label>
+              </div>              
+              <div class="form-group col-sm-8">
+                <input id="payments" type="text" class="form-control" placeholder="60" aria-label="down" aria-describedby="basic-addon1" value="60">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="payment">Monthly payment</label>
+              </div>
+              <div class="form-group col-sm-8">
+                <input id="payment" type="text" class="form-control" placeholder="$600" aria-label="payment" aria-describedby="basic-addon1" value="600">
+              </div>                                         
+              <div class="form-group col-sm-12">
+                <button id="calculate" type="button" class="btn btn-primary btn-block">Calculate</button>
+              </div>
+              <div class="form-group col-sm-12">
+                <button id="btn-payment" type="button" class="btn btn-success btn-block" onclick="javascript:location.href='index.html'">Monthly Payment</button>
+              </div>              
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="js/fees.js"></script>
+</body>
+</html>
