@@ -1,0 +1,70 @@
+run.config:
+  # install php and associated runtimes
+  engine: php
+
+  # php engine configuration (php version, extensions, etc)
+  engine.config:
+    # use nginx
+    webserver: 'nginx'
+
+    # php.ini settings
+    allow_url_fopen: 'On'
+
+    # Timezone/Locale/Mimetype/Encoding
+    date_timezone: 'UTC'
+    default_locale: 'en_US'
+    default_mimetype: 'text/html'
+    iconv_internal_encoding: 'UTF-8'
+
+    # sets the document root to public
+    document_root: public
+
+    # sets the php version to 7.2
+    runtime: php-7.2
+
+    # enables php extensions
+    extensions:
+      - pdo
+      - mbstring
+      - tokenizer
+      - pdo
+      - pdo_mysql
+      - session
+      - zip
+      - dom
+      - xml
+      - ctype
+      - xmlwriter
+      - fileinfo
+      - bcmath
+      - json
+
+web.ui:
+  # Writable folders for logs and cache
+  writable_dirs:
+    - temp
+
+  # Autostart services
+  start:
+    php: start-php
+    nginx: start-nginx
+
+  # the path to a logfile you want streamed to the nanobox dashboard
+  log_watch:
+    laravel[error]: logs/carcalc.log
+
+  # Only one route
+  routes:
+  - /
+
+deploy.config:
+  before_live:
+    web.ui:
+      # Clear the log for this deployment
+      - rm -fR logs/carcalc.log
+
+      # Copy setup files
+#      - cp /app/.env.example /app/.env
+
+      # Create logs directories
+      - mkdir -p logs
