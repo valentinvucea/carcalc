@@ -24,15 +24,12 @@
             <div class="item">
               <span id="fees" class="price">$0</span>
               <p class="item-name">Tax, tiles, tags</p>
+              <small id="fees-details"></small>
             </div>
             <div class="item">
-              <span id="monthly60" class="price">$0</span>
-              <p class="item-name">Monthly payment @60 months</p>
-            </div>
-            <div class="item">
-              <span id="monthly72" class="price">$0</span>
-              <p class="item-name">Monthly payment @72 months</p>
-            </div>            
+              <span id="monthly" class="price">$0</span>
+              <p id="monthly-text" class="item-name">Monthly payment @60 months</p>
+            </div>           
           </div>
         
           <div class="card-details">
@@ -43,29 +40,50 @@
                 <label for="msrp">MSRP</label>
               </div>
               <div class="form-group col-sm-8">
-                <input id="msrp" type="text" class="form-control" placeholder="$0" aria-label="MSRP" aria-describedby="basic-addon1" value="0">
+                <input id="msrp" type="text" class="form-control" placeholder="$44615" aria-label="MSRP" aria-describedby="basic-addon1" value="44615">
               </div>
               <div class="form-group col-sm-4">
                 <label for="price">Car negociated price</label>
               </div>
               <div class="form-group col-sm-8">
-                <input id="price" type="text" class="form-control" placeholder="$0" aria-label="MSRP" aria-describedby="basic-addon1" value="0">
+                <input id="price" type="text" class="form-control" placeholder="$42357" aria-label="price" aria-describedby="basic-addon1" value="42357">
               </div>
               <div class="form-group col-sm-4">
                 <label for="additional">Additional options</label>
               </div>              
               <div class="form-group col-sm-8">
-                <input id="additional" type="text" class="form-control" placeholder="$0" aria-label="MSRP" aria-describedby="basic-addon1" value="0">
+                <input id="additional" type="text" class="form-control" placeholder="$0" aria-label="additional" aria-describedby="basic-addon1" value="0">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="apr">APR (%)</label>
+              </div>
+              <div class="form-group col-sm-8">
+                <input id="apr" type="text" class="form-control" placeholder="APR" aria-label="apr" aria-describedby="basic-addon1" value="0.9">
+              </div>               
+              <div class="form-group col-sm-4">
+                <label for="dealer-fee">Dealer Fees</label>
+              </div>
+              <div class="form-group col-sm-8">
+                <input id="dealer-fee" type="text" class="form-control" placeholder="$500" aria-label="dealer-fees" aria-describedby="basic-addon1" value="500">
               </div>
               <div class="form-group col-sm-4">
                 <label for="down">Down payment</label>
-              </div>
-              <div class="form-group col-sm-8">
-                <input id="down" type="text" class="form-control" placeholder="$0" aria-label="MSRP" aria-describedby="basic-addon1" value="0">
               </div>              
+              <div class="form-group col-sm-8">
+                <input id="down" type="text" class="form-control" placeholder="$7500" aria-label="down" aria-describedby="basic-addon1" value="7500">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="payments"># of payments</label>
+              </div>              
+              <div class="form-group col-sm-8">
+                <input id="payments" type="text" class="form-control" placeholder="60" aria-label="down" aria-describedby="basic-addon1" value="60">
+              </div>                            
               <div class="form-group col-sm-12">
                 <button id="calculate" type="button" class="btn btn-primary btn-block">Calculate</button>
               </div>
+              <div class="form-group col-sm-12">
+                <button id="btn-fees" type="button" class="btn btn-success btn-block" onclick="javascript:location.href='fees.html'">Fees Decomposition</button>
+              </div>           
             </div>
           </div>
         </form>

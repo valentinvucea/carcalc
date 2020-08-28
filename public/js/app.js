@@ -15,13 +15,16 @@ var app = (function(parent, $) {
         'additional': '#additional',
         'total': '#total',
         'fees': '#fees',
-        'monthly60': '#monthly60',
-        'monthly72': '#monthly72',
+        'dealerFee': '#dealer-fee',
+        'monthly': '#monthly',
+        'payments': '#payments',
+        'monthlyText': '#monthly-text',
         'taxPercent': 0.06,
         'titleFee': 100,
-        'registrationFee': 185,
-        'tagsFee': 15,
-        'apr': 0.9,
+        'registrationFee': 165,
+        'tagsFee': 20,
+        'apr': '#apr',
+        'feesDetails': '#fees-details',        
     };
 
     parent.getValue = function (field) {
@@ -40,8 +43,11 @@ var app = (function(parent, $) {
     parent.pmt = function (principal, apr, payments) {
         var interest = apr / 100 / 12;
         var x = Math.pow(1 + interest, payments);
-        var monthly = (principal*x*interest)/(x-1);
-        
+        var monthly = principal/payments;
+        if (0 !== apr) {
+            monthly = (principal*x*interest)/(x-1);
+        }
+
         // Check that the result is a finite number. If so, display the results.
         if (!isNaN(monthly) && 
             (monthly != Number.POSITIVE_INFINITY) &&
@@ -54,7 +60,20 @@ var app = (function(parent, $) {
     };
 
     parent.getFees = function () {
-        return (parent.getValue('msrp') + parent.getValue('additional')) * config.taxPercent + config.titleFee + config.registrationFee + config.tagsFee;
+        var msrp = parent.getValue('msrp');
+        var additional = parent.getValue('additional');
+        var dealerFee = parent.getValue('dealerFee');
+        var stateTax = (msrp + additional) * config.taxPercent;
+        var total = Math.round(stateTax) + config.titleFee + config.registrationFee + config.tagsFee + dealerFee;
+        
+        return {
+            'tax': Math.round(stateTax),
+            'title': config.titleFee,
+            'registration': config.registrationFee,
+            'tags': config.tagsFee,
+            'dealer': dealerFee,
+            'total': total
+        };
     };
 
     parent.calculate = function () {
@@ -79,13 +98,24 @@ var app = (function(parent, $) {
         
         /** Calculate fees */
         var fees = parent.getFees();
-        var total = parent.getValue('price') + parent.getValue('additional') + fees;
+        var total = parent.getValue('price') + parent.getValue('additional') + fees.total;
         var principal = total - parent.getValue('down');
-
+        var apr = parseFloat($(config.apr).val());
+        var payments = parent.getValue('payments');
+        
         $(config.total).text('$' + total);
-        $(config.fees).text('$' + fees);
-        $(config.monthly60).text('$' + parent.pmt(principal, config.apr, 60));
-        $(config.monthly72).text('$' + parent.pmt(principal, config.apr, 72));
+        $(config.fees).text('$' + fees.total);
+        $(config.feesDetails).text('State Tax: $' + fees.tax + ', Title: $' + fees.title + ', Registration: $' + fees.registration + ', Tags: $' + fees.tags + ', Dealer Fees: $' + fees.dealer);
+
+        console.log(principal);
+        console.log(apr);
+        console.log(payments);
+
+        var payment = parent.pmt(principal, apr, payments);
+        payment = Math.round(payment);
+    
+        $(config.monthlyText).text('Monthly payment @' + payments + ' months');
+        $(config.monthly).text('$' + payment);
 
         $([document.documentElement, document.body]).animate({
             scrollTop: 0
